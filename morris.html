@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-slider@latest/dist/css/bootstrap-slider.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+            </div>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Morris.js Charts</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <canvas id="barChart"></canvas>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-12">
+                    <div id="app">
+                        <div>
+                            <h1>Montant que vous souhaitez investir </h1>
+                            <b-form-slider v-model="basicValue" min="0" :max="1000" trigger-change-event></b-form-slider>
+                            <p>Montant investi <span id="ok">{{ basicValue + secondValue }}</span></p>
+
+                            <h1>Vertical slider</h1>
+                            <b-form-slider v-model="secondValue" :min="0" :max="100" orientation="vertical"></b-form-slider>
+                            <p>Value of slider is <div id="recup"> {{ secondValue }} %</div></p>
+
+                            <h1>Range slider</h1>
+                            <b-form-slider v-model="rangeValue" min="0" :max="1000" @change trigger-change-event></b-form-slider>
+                            <p>Value of slider is {{ rangeValue }}</p>
+                        </div>
+
+                        <div>
+                            total : {{ basicValue + secondValue + rangeValue}}
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Bar Chart Example
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div id="morris-bar-chart"></div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+
+                <!-- /.col-lg-6 -->
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Morris.js Usage
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <p>Morris.js is a jQuery based charting plugin created by Olly Smith. In SB Admin, we are using the most recent version of Morris.js which includes the resize function, which makes the charts fully responsive. The documentation for Morris.js is available on their website, <a target="_blank" href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>.</p>
+                            <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://morrisjs.github.io/morris.js/">View Morris.js Documentation</a>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/tether@latest/dist/js/tether.min.js"></script>
+    <script src="https://unpkg.com/jquery@latest/dist/jquery.js"></script>
+    <script src="https://unpkg.com/bootstrap@next/dist/js/bootstrap.js"></script>
+    <script src="https://unpkg.com/bootstrap-slider@latest/dist/bootstrap-slider.js"></script>
+    <script src="https://unpkg.com/vue-bootstrap-slider@latest/dist/vue-bootstrap-slider.js"></script>
+    <script>
+
+
+
+        const app = new Vue({
+
+
+            el: '#app',
+            debug: true,
+            data: function() {
+                return {
+                    basicValue: 27,
+                    secondValue: 0,
+                    rangeValue: 28,
+                }
+            },
+            methods: {
+                change: function(value) {
+
+                        console.log(value)
+                }
+            },
+
+            mounted: function (value) {
+
+                    Morris.Bar({
+                        element: 'morris-bar-chart',
+                        data: [{
+                            y: '2006',
+                            a: 100,
+                            b: 90
+                        }, {
+                            y: "basicValue",
+                            a: 75,
+                            b: 65
+                        }, {
+                            y: this.rangeValue,
+                            a: 50,
+                            b: 40
+                        }, {
+                            y: '2009',
+                            a: 75,
+                            b: 65
+                        }, {
+                            y: '2010',
+                            a: 50,
+                            b: 40
+                        }, {
+                            y: '2011',
+                            a: 75,
+                            b: 65
+                        }, {
+                            y: '2012',
+                            a: 100,
+                            b: 90
+                        }],
+                        xkey: 'y',
+                        ykeys: ['a', 'b'],
+                        labels: ['Series A', 'Series B'],
+                        hideHover: 'auto',
+                        resize: true
+                    });
+
+                    console.log(this.value.rangeValue);
+
+            }
+        });
+    </script>
+    <script src="../data/morris-data.js"></script>
+
+
+</body>
+
+</html>
